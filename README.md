@@ -81,12 +81,16 @@ flowchart LR
   * `event_details` (event\_id, event\_name, location, `seats` array)
 * Sends JSON messages to `bookingstopic` Event Hub.
 
+![booking](Project_Screenshots/mock_bookings.png)
+
 ### `mock_payments.py`
 
 * Generates payment events with:
 
   * `payment_id`, `order_id`, `payment_time`, `amount`, `payment_method`, `payment_status`
 * Sends JSON messages to `paymentstopic` Event Hub.
+
+![payments](Project_Screenshots/mock_payments.png)
 
 ### `stream_analytics_job_query.sql`
 
@@ -98,9 +102,13 @@ flowchart LR
   * Performs a join between booking and payment streams on `order_id` with a time window
 * Outputs to Synapse table `bookings-synapse` (configured as Stream Analytics output to Synapse).
 
+![stream_job](Project_Screenshots/stream_job.png)
+
 ### `synapse_create_table.sql`
 
 * Creates schema `bookymyshow` and table `bookymyshow.bookings_fact` (final fact table schema).
+
+![output_synapse table](Project_Screenshots/synapse_table.png)
 
 ---
 
